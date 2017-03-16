@@ -1,0 +1,18 @@
+<h1>All Articles</h1>
+
+<ul id="articles">
+  <% @articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article_path(article) %>
+      <%= article.body %>
+    </li>
+  <% end %>
+
+  <%= link_to "Create a New Article", new_article_path, class:"new_article" %>  <!-- new_article is the name of our "new" action, so we add _path to create our helper -->
+</ul>
+
+<!-- ERB is a templating language that allows us to mix Ruby into our HTML. There are only a few things to know about ERB:
+
+An ERB clause starts with percent or percent= and ends with %>
+If the clause started with percent, the result of the ruby code will be hidden
+If the clause started with percent=, the result of the ruby code will be output instead of the clause -->
