@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments  # Creates the article_comments_path so that our form for [@articles, @comments] will work
   end
+  resources :tags # Not quite sure why this has to be outside, but it can't be within articles/do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
