@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <p class="flash"><%= flash.notice %></p>
+      <!-- Outputs the value stored in "flash" within the controller to our
+      built-in "notice" attribute -->
+
     <%= yield %>
   </body>
 </html>
