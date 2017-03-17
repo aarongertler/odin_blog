@@ -3,6 +3,13 @@ class Article < ApplicationRecord
   # we have to add this ourselves
   has_many :taggings
   has_many :tags, through: :taggings # Makes it much easier to gather up all of an article's tags
+  has_attached_file :image, styles: {  medium: "300x300>", thumb: "100x100>" }
+  # The "styles" above will only work if ImageMagick is working. We can call @article.image.url(:medium) to display an image of a particular size.
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+
+  # The above has_attached_file method is part of the paperclip library. 
+  # With that declaration, paperclip will understand that this model should accept a file 
+  # attachment and that there are fields to store information about that file which start with image_ in this model’s database table.
 
   def tag_list
     self.tags.collect do |tag|
