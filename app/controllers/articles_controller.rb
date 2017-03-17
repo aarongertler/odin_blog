@@ -9,6 +9,12 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id]) # grabs :id from the url
     # params returns a hash of all request parameters, we've chosen "id" from among them
+    
+    @comment = Comment.new  # Interesting: Whenever an article is opened, we're assuming a comment will be created
+    @comment.article_id = @article.id 
+
+    # If we users @article.comments.new, we'd already have assigned the comment to the article and would see an "extra" comment
+
   end
 
   def new

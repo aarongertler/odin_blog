@@ -1,0 +1,17 @@
+class CommentsController < ApplicationController
+
+  def create
+    @comment = Comment.new(comment_params)
+    @comment.article_id = params[:article_id]
+
+    @comment.save
+
+    redirect_to article_path(@comment.article) # Need to explain which article we want in reference to our current object, the comment
+  end
+
+  def comment_params
+    params.require(:comment).permit(:author_name, :body)
+  end
+
+end
+
