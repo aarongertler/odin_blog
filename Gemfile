@@ -27,12 +27,14 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Paperclip as part of the Jumpstart Lab project
+# Use Paperclip as part of the Jumpstart Lab project (to attach images)
 gem 'paperclip'
+# Use Sorcery for authentication (Jumpstart Lab suggestion)
+gem 'sorcery'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', platforms: :ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

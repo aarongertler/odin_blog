@@ -3,6 +3,15 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments  # Creates the article_comments_path so that our form for [@articles, @comments] will work
   end
-  resources :tags # Not quite sure why this has to be outside, but it can't be within articles/do
+  resources :tags # Not part of articles/do, since we want to be able to look at tags as independent objects (whereas all comments are connected to an article)
+  resources :authors
+
+  resources :author_sessions, only: [ :new, :create, :destroy ]
+    # No need to update session data, provide an index of sessions, etc.
+
+  get 'login' => 'author_sessions#new'
+    # This means that you can go to url/login to log in, rather than url/author_sessions/new
+  get 'logout' => 'author_sessions#destroy'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
