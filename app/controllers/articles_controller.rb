@@ -1,6 +1,15 @@
 class ArticlesController < ApplicationController
-
   include ArticlesHelper
+
+  before_filter :require_login, except: [:show, :index]
+  # before_filter :require_author, except: [:new, :create]  # This will only work once we add authors to the articles
+
+  # def require_author
+  #   unless @article.author.email == current_user.email
+  #     redirect_to root_path
+  #     return false
+  #   end
+  # end
 
   def index
     @articles = Article.all  # An instance variable, since view and controller both need to use it

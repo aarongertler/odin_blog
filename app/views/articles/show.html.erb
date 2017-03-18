@@ -19,7 +19,9 @@
 <%= render partial: 'articles/comment', collection: @article.comments %>
 <!-- The above previously read @article_comments, which didn't work at all (of course) -->
 <%= link_to "<< All articles", articles_path %>
-<%= link_to "Edit post", edit_article_path(@article) %>
-<%= link_to "Delete post", article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>
+<% if logged_in? %>
+  <%= link_to "Edit post", edit_article_path(@article) %>
+  <%= link_to "Delete post", article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
   <!-- We need the extra "delete" method here, since HTML links are always GET. We also need to define a "destroy" method now. -->
   <!-- articles_path is article_path, pluralized! Thanks, Rails. -->

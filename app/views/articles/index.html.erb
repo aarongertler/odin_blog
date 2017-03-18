@@ -8,7 +8,9 @@
     </li>
   <% end %>
 
-  <%= link_to "Create a New Article", new_article_path, class:"new_article" %>  <!-- new_article is the name of our "new" action, so we add _path to create our helper -->
+  <% if logged_in? %>
+    <%= link_to "Create a New Article", new_article_path, class:"new_article" %>  <!-- new_article is the name of our "new" action, so we add _path to create our helper -->
+  <% end %>
 </ul>
 
 <!-- ERB is a templating language that allows us to mix Ruby into our HTML. There are only a few things to know about ERB:

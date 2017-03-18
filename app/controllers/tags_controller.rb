@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_filter :require_login, except: [:show, :index] # Included in the Logins concern
 
   def index # This is what we'll need if we want our url/tags page to exist
     @tags = Tag.all
@@ -10,7 +11,7 @@ class TagsController < ApplicationController
 
   def destroy
     @tag = Tag.find(params[:id])
-    @tag.destroy 
+    @tag.destroy
 
     flash.notice = "You successfully deleted '#{@tag.name}'."
 
