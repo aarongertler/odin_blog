@@ -11,6 +11,12 @@ class Article < ApplicationRecord
   # With that declaration, paperclip will understand that this model should accept a file 
   # attachment and that there are fields to store information about that file which start with image_ in this model’s database table.
 
+  def add_view
+    self.view_count ||= 0
+    self.view_count += 1
+    self.save  # This "save" line is what I was missing before -- needed if we're changing parameters
+  end
+
   def tag_list
     self.tags.collect do |tag|
       tag.name

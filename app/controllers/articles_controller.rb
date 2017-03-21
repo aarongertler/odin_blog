@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   include ArticlesHelper
 
   before_filter :require_login, except: [:show, :index]
+
   # before_filter :require_author, except: [:new, :create]  # This will only work once we add authors to the articles
 
   # def require_author
@@ -18,12 +19,14 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id]) # grabs :id from the url
     # params returns a hash of all request parameters, we've chosen "id" from among them
+
+    @article.add_view
+    # If we wanted to save something like "unique impressions", we could try: http://stackoverflow.com/questions/4815713/simple-hit-counter-for-page-views-in-rails
     
     @comment = Comment.new  # Interesting: Whenever an article is opened, we're assuming a comment will be created
-    @comment.article_id = @article.id 
+    @comment.article_id = @article.id
 
     # If we users @article.comments.new, we'd already have assigned the comment to the article and would see an "extra" comment
-
   end
 
   def new
@@ -70,5 +73,18 @@ class ArticlesController < ApplicationController
 
     redirect_to articles_path
   end
+
+  ########### Custom Methods #############
+
+  def popular_index
+    @articles = Article.order('view_count DESC').limit(3)
+  end
+
+  # def feed   # Deciding not to add an RSS feed for now -- moving on from this project
+  #   @articles = Article.all
+  #   respond_to do |format|
+  #     format.rss { render :layout => false }
+  #   end
+  # end
 
 end

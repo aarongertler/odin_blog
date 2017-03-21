@@ -1,0 +1,15 @@
+<h1>Popular Articles</h1>
+
+<ul id="articles">
+  <% @articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article_path(article) %>
+      <%= "Views: " %>
+      <%= article.view_count %>
+    </li>
+  <% end %>
+
+  <% if logged_in? %>
+    <%= link_to "Create a New Article", new_article_path, class:"new_article" %>  <!-- new_article is the name of our "new" action, so we add _path to create our helper -->
+  <% end %>
+</ul>
