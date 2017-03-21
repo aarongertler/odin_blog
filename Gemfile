@@ -13,7 +13,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-# Use pg with Heroku
+# Use pg with Heroku (http://evening-eyrie-35308.herokuapp.com/)
 group :production do
   gem 'pg'
 end
